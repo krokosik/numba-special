@@ -1,5 +1,8 @@
 # numba-special
 
+> [!CAUTION]
+> This project is WIP and only has a proof of concept. It is also written by GLM 5.2 with human oversight.
+
 Numba-compatible bridges for `scipy.special`, with **complex-number support**.
 
 `numba.njit` code cannot call `scipy.special` functions directly — they are
