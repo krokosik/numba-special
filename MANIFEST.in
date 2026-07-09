@@ -1,0 +1,5 @@
+include pyproject.toml setup.py README.md LICENSE
+recursive-include src *.pyx
+recursive-include src py.typed
+recursive-include src __init__.py
+recursive-include src _overloads.py

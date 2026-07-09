@@ -4,8 +4,8 @@ version = "0.1.0"
 description = "Numba-compatible bridges for scipy.special, with complex-number support"
 readme = "README.md"
 authors = [{ name = "krokosik", email = "krokosik@pm.me" }]
-requires-python = ">=3.13"
-dependencies = ["numba>=0.66.0", "scipy>=1.18.0"]
+requires-python = ">=3.12"
+dependencies = ["numba>=0.60", "scipy>=1.15"]
 
 [dependency-groups]
 dev = ["pytest>=9.1.1", "ruff>=0.15.20"]
@@ -20,6 +20,13 @@ package-dir = { "" = "src" }
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+numba_special = ["py.typed"]
+
 [tool.cibuildwheel]
 # Cython source is shipped; the build rebuilds the extension in place.
 before-build = "pip install Cython>=3.0"
+build = "cp312-* cp313-*"
+skip = "*-musllinux *_i686 *-win32"
+test-requires = "pytest"
+test-command = "python -m pytest {package}/tests -q"

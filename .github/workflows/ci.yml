@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint-and-test:
+    name: Lint + Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+          enable-cache: true
+      - name: Install deps and build extension
+        run: |
+          uv sync
+          uv pip install setuptools wheel Cython
+          uv pip install -e . --no-build-isolation
+      - name: Ruff check
+        run: uv run ruff check src tests setup.py
+      - name: Ruff format check
+        run: uv run ruff format --check src tests
+      - name: Run tests
+        run: uv run pytest tests/ -q
