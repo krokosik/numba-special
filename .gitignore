@@ -8,3 +8,8 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Cython
+*.c
+*.so
+*.h
