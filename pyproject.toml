@@ -1,0 +1,17 @@
+[project]
+name = "numba-special"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "krokosik", email = "krokosik@pm.me" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "numba>=0.66.0",
+    "scipy>=1.18.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.8.23,<0.9.0"]
+build-backend = "uv_build"
