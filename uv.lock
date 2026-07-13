@@ -73,8 +73,8 @@ wheels = [
 ]
 
 [[package]]
-name = "numba-special"
-version = "0.1.0"
+name = "numba-specialz"
+version = "0.0.1"
 source = { editable = "." }
 dependencies = [
     { name = "numba" },

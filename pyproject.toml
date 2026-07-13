@@ -1,6 +1,6 @@
 [project]
 name = "numba-specialz"
-version = "0.1.0"
+version = "0.0.1"
 description = "Numba-compatible bridges for scipy.special, with complex-number support"
 readme = "README.md"
 authors = [{ name = "krokosik", email = "krokosik@pm.me" }]
