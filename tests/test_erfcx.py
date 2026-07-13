@@ -10,7 +10,7 @@ import pytest
 import scipy.special as ss
 
 import numba
-import numba_special  # noqa: F401  (import registers the overloads)
+import numba_specialz  # noqa: F401  (import registers the overloads)
 
 
 @numba.njit

@@ -1,5 +1,5 @@
 [project]
-name = "numba-special"
+name = "numba-specialz"
 version = "0.1.0"
 description = "Numba-compatible bridges for scipy.special, with complex-number support"
 readme = "README.md"
@@ -21,7 +21,7 @@ package-dir = { "" = "src" }
 where = ["src"]
 
 [tool.setuptools.package-data]
-numba_special = ["py.typed"]
+numba_specialz = ["py.typed"]
 
 [tool.cibuildwheel]
 # Cython source is shipped; the build rebuilds the extension in place.

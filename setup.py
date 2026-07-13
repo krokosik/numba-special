@@ -21,8 +21,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 extensions = [
     Extension(
-        name="numba_special._special_ext",
-        sources=["src/numba_special/_special_ext.pyx"],
+        name="numba_specialz._special_ext",
+        sources=["src/numba_specialz/_special_ext.pyx"],
     )
 ]
 

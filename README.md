@@ -1,4 +1,4 @@
-# numba-special
+# numba-specialz
 
 > [!CAUTION]
 > This project is WIP and only has a proof of concept. It is also written by GLM 5.2 with human oversight.
@@ -42,7 +42,7 @@ and raw pointers across the ctypes boundary.
 
 It is a two-file mechanism:
 
-1. **`src/numba_special/_special_ext.pyx`** — a tiny Cython extension. At
+1. **`src/numba_specialz/_special_ext.pyx`** — a tiny Cython extension. At
    import time it resolves the raw C addresses of scipy's
    `scipy.special.cython_special` capsules (e.g. `__pyx_fuse_0erfcx` for the
    complex specialisation, `__pyx_fuse_1erfcx` for the real one) and stores
@@ -58,7 +58,7 @@ It is a two-file mechanism:
      written out through `double *` pointers. No `double complex` ever
      crosses the ctypes boundary — only `double` and `double *`.
 
-2. **`src/numba_special/_overloads.py`** — opens the compiled `.so` as a
+2. **`src/numba_specialz/_overloads.py`** — opens the compiled `.so` as a
    `ctypes.CDLL`, binds `ns_erfcx_r` / `ns_erfcx_c` as module-level
    function-pointer globals with `argtypes`/`restype` set, and registers a
    `numba.extending.overload(scipy.special.erfcx)` that dispatches on the
@@ -68,7 +68,7 @@ It is a two-file mechanism:
    - `Complex` input → allocate two length-1 `float64` scratch arrays, call
      `ns_erfcx_c` passing them via `.ctypes`, and reassemble a `complex`.
 
-Importing `numba_special` is enough to activate the overload — afterwards
+Importing `numba_specialz` is enough to activate the overload — afterwards
 `scipy.special.erfcx` Just Works inside `numba.njit`, for both real and
 complex arguments.
 
@@ -90,7 +90,7 @@ globals (the typed `ctypes` function object is `typeof`-able; the enclosing
 import numba
 import scipy.special as ss
 
-import numba_special  # registers the overloads on import
+import numba_specialz  # registers the overloads on import
 
 
 @numba.njit
@@ -117,7 +117,7 @@ in an isolated build environment that is not reused locally, so the build
 dependencies must be installed into the venv explicitly and the editable
 install run without build isolation.
 
-After editing `src/numba_special/_special_ext.pyx`, re-run the
+After editing `src/numba_specialz/_special_ext.pyx`, re-run the
 `uv pip install -e . --no-build-isolation` line to recompile.
 
 ## Testing & linting

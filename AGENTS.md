@@ -15,10 +15,10 @@ uv pip install setuptools wheel Cython          # build deps into the venv
 uv pip install -e . --no-build-isolation        # compile _special_ext.so in place
 ```
 
-After editing `src/numba_special/_special_ext.pyx`, re-run the
+After editing `src/numba_specialz/_special_ext.pyx`, re-run the
 `uv pip install -e . --no-build-isolation` line to recompile.
 
-`src/numba_special/_special_ext.{c,so,h}` are gitignored generated artifacts
+`src/numba_specialz/_special_ext.{c,so,h}` are gitignored generated artifacts
 — edit the `.pyx`, never the `.c`.
 
 ## Tests & lint
@@ -40,13 +40,13 @@ for complex arguments — which the legacy `numba-scipy` package could not do.
 
 Two-file mechanism:
 
-- `src/numba_special/_special_ext.pyx` — Cython bridge. At import it resolves
+- `src/numba_specialz/_special_ext.pyx` — Cython bridge. At import it resolves
   the raw C addresses of scipy's `cython_special` capsules (e.g.
   `__pyx_fuse_0erfcx`, `__pyx_fuse_1erfcx`) via
   `numba.extending.get_cython_function_address`, stores them as *typed C
   function pointers*, and exposes plain C entry points
   (`ns_erfcx_r`, `ns_erfcx_c`, `ns_bind_erfcx`) with default visibility.
-- `src/numba_special/_overloads.py` — opens the extension's `.so` as a
+- `src/numba_specialz/_overloads.py` — opens the extension's `.so` as a
   `ctypes.CDLL`, binds the entry points as module-level function-pointer
   globals with `argtypes`/`restype`, and registers
   `numba.extending.overload(scipy.special.erfcx)`.

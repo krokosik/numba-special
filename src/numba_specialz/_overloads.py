@@ -2,7 +2,7 @@
 
 This is the proof-of-concept registration. It wires
 :func:`scipy.special.erfcx` to the compiled C bridge in
-:mod:`numba_special._special_ext` so it can be called from ``numba.njit``
+:mod:`numba_specialz._special_ext` so it can be called from ``numba.njit``
 code for both real and complex arguments.
 
 Two things make this work:
@@ -112,6 +112,6 @@ def _overload_erfcx(x):
 
 
 # Eagerly trigger overload registration on import of the package so that
-# ``import numba_special`` is sufficient to make ``scipy.special.erfcx``
+# ``import numba_specialz`` is sufficient to make ``scipy.special.erfcx``
 # usable from ``numba.njit``.
 erfcx = scipy.special.erfcx
